@@ -1,0 +1,75 @@
+.header {
+  margin: 0 auto;
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #121417;
+  font-family: var(--font-family);
+}
+
+.container {
+  max-width: 1184px;
+}
+
+.nav {
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  gap: 28px;
+
+  line-height: 1.25;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.logo {
+  width: 133px;
+  height: 28px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.icon {
+  fill: transparent;
+}
+
+.logIn {
+  display: flex;
+  gap: 8px;
+}
+
+.auth {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.authBtn {
+  border-radius: 12px;
+  padding: 14px 39px;
+  width: 166px;
+  height: 48px;
+  background: #121417;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+
+  transition: background 0.3s ease;
+}
+
+.authBtn:hover,
+.authBtn:focus-visible {
+  background: #3a3d42;
+}
