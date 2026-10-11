@@ -36,7 +36,6 @@
 }
 
 .titleСontainer {
-  position: relative;
   display: flex;
   align-items: center;
 }
@@ -86,4 +85,9 @@
   font-size: 18px;
   line-height: 1.55556;
   color: #121417;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: #fbe9ba;
 }
