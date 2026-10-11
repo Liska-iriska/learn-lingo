@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "./Header.module.css";
 
 function Header() {
@@ -10,8 +11,12 @@ function Header() {
         <p className={css.logot}>LearnLingo</p>
       </div>
       <nav className={css.nav}>
-        <p className={css.navItem}>Home</p>
-        <p className={css.navItem}>Teachers</p>
+        <Link to="/" className={css.navItem}>
+          Home
+        </Link>
+        <Link to="/teachers" className={css.navItem}>
+          Teachers
+        </Link>
       </nav>
       <div className={css.auth}>
         <div className={css.logIn}>

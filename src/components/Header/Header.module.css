@@ -24,6 +24,21 @@
   font-size: 16px;
 }
 
+.navItem {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.4s ease;
+}
+
+.navItem:hover,
+.navItem:focus-visible,
+.logIn:hover,
+.logIn:focus-visible {
+  text-decoration-color: #121417;
+}
+
 .logo {
   width: 133px;
   height: 28px;
@@ -44,6 +59,11 @@
 .logIn {
   display: flex;
   gap: 8px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.4s ease;
 }
 
 .auth {
@@ -66,10 +86,10 @@
   line-height: 1.25;
   color: #fff;
 
-  transition: background 0.3s ease;
+  transition: background 0.4s ease;
 }
 
 .authBtn:hover,
 .authBtn:focus-visible {
-  background: #3a3d42;
+  background: #6a6f79;
 }
