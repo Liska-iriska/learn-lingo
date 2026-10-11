@@ -2,4 +2,47 @@
 
 :root {
   --font-family: "Roboto", sans-serif;
+  --color: #f4c550;
+  --color-hover: #fbe9ba;
+  --text-color: #121417;
+  --text-color-hover: #4f5764;
+  --hero-img: image-set(
+    url("/hero/hero-yellow.webp") 1x,
+    url("/hero/hero-yellow@2x.webp") 2x
+  );
+}
+
+:root[data-theme="green"] {
+  --color: #9fbaae;
+  --color-hover: #cbded3;
+  --hero-img: image-set(
+    url("/hero/hero-green.webp") 1x,
+    url("/hero/hero-green@2x.webp") 2x
+  );
+}
+
+:root[data-theme="blue"] {
+  --color: #9fb7ce;
+  --color-hover: #bfd6ea;
+  --hero-img: image-set(
+    url("/hero/hero-blue.webp") 1x,
+    url("/hero/hero-blue@2x.webp") 2x
+  );
+}
+:root[data-theme="red"] {
+  --color: #e0a39a;
+  --color-hover: #f2c0bd;
+  --hero-img: image-set(
+    url("/hero/hero-red.webp") 1x,
+    url("/hero/hero-red@2x.webp") 2x
+  );
+}
+
+:root[data-theme="orange"] {
+  --color: #f0aa8d;
+  --color-hover: #f4c8ba;
+  --hero-img: image-set(
+    url("/hero/hero-orange.webp") 1x,
+    url("/hero/hero-orange@2x.webp") 2x
+  );
 }

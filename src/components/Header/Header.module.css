@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #121417;
+  color: var(--text-color);
   font-family: var(--font-family);
 }
 
@@ -37,7 +37,7 @@
 .navItem:focus-visible,
 .logIn:hover,
 .logIn:focus-visible {
-  text-decoration-color: #121417;
+  text-decoration-color: var(--text-color);
 }
 
 .logo {
@@ -51,16 +51,17 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #121417;
+  color: var(--text-color);
 }
 
 .logo:hover,
 .logo:focus-visible {
-  color: #4f5764;
+  color: var(--text-color-hover);
 }
 
 .icon {
   fill: transparent;
+  stroke: var(--color);
 }
 
 .logIn {
@@ -89,7 +90,7 @@
   border-radius: 12px;
   width: 166px;
   height: 48px;
-  background: #121417;
+  background: var(--text-color);
 
   font-weight: 700;
   font-size: 16px;
@@ -100,5 +101,5 @@
 
 .authBtn:hover,
 .authBtn:focus-visible {
-  background: #6a6f79;
+  background: var(--text-color-hover);
 }

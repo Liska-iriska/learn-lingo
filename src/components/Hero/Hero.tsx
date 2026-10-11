@@ -18,15 +18,7 @@ export const Hero = () => {
         <button className={css.btn}>Get Started</button>
       </div>
 
-      <div>
-        <img
-          src="/hero/hero-yellow.webp"
-          srcSet="/hero/hero-yellow.webp 1x, /hero/hero-yellow@2x.webp 2x"
-          width={568}
-          height={530}
-          alt="Girl with the laptop"
-        />
-      </div>
+      <div className={css.img}></div>
     </section>
   );
 };
