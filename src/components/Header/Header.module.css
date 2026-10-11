@@ -25,6 +25,7 @@
 }
 
 .navItem {
+  display: flex;
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
@@ -50,6 +51,12 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  color: #121417;
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: #4f5764;
 }
 
 .icon {
@@ -75,8 +82,11 @@
 }
 
 .authBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   border-radius: 12px;
-  padding: 14px 39px;
   width: 166px;
   height: 48px;
   background: #121417;
@@ -85,7 +95,6 @@
   font-size: 16px;
   line-height: 1.25;
   color: #fff;
-
   transition: background 0.4s ease;
 }
 
