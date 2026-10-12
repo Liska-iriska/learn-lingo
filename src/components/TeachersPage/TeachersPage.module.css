@@ -1,0 +1,14 @@
+.teachersPage {
+  background-color: #f8f8f8;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 96px 0;
+  width: 100%;
+  max-width: 1184px;
+  margin: 0 auto;
+}

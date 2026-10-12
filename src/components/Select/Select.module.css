@@ -1,0 +1,107 @@
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: max-content;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: var(--text-color-hover);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 140px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  width: 100%;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  color: var(--text-color);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color);
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-height: 272px;
+  margin: 0;
+  padding: 14px 18px;
+  list-style: none;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  color: rgba(18, 20, 23, 0.2);
+  transition: color 0.2s ease;
+}
+
+.option:hover {
+  color: rgba(18, 20, 23, 0.6);
+}
+
+.optionActive,
+.optionActive:hover {
+  color: var(--text-color);
+}
+
+.valueWrap {
+  display: grid;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.value,
+.sizer {
+  grid-area: 1 / 1;
+}
+
+.sizer {
+  visibility: hidden;
+  pointer-events: none;
+}
