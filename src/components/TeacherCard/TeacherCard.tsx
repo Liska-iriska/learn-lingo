@@ -1,105 +1,46 @@
-// import css from "./TeacherCard.module.css";
-
-// export const TeacherCard = () => {
-//   return (
-//     <li className={css.card}>
-//       <div className={css.avatar}>
-//         <div className={css.indicate}></div>
-//         <img
-//           className={css.img}
-//           src="/hero/hero-blue.webp"
-//           width={96}
-//           height={96}
-//         />
-//       </div>
-
-//       <div className={css.name}>
-//         <span>Languages</span>
-//         <p>Jane Smith</p>
-//       </div>
-
-//       <div className={css.about}>
-//         <div className={css.aboutItem}>
-//           <svg width={16} height={16} fill="none" stroke="#000000">
-//             <use href="/sprite.svg#book-open" />
-//           </svg>
-//           <span>Lessons online</span>
-//         </div>
-
-//         <svg width={1} height={16} stroke="rgba(18, 20, 23, 0.2)">
-//           <use href="/sprite.svg#icon-divide" />
-//         </svg>
-
-//         <div className={css.aboutItem}>
-//           <span>Lessons done: 1098</span>
-//         </div>
-
-//         <svg width={1} height={16} stroke="rgba(18, 20, 23, 0.2)">
-//           <use href="/sprite.svg#icon-divide" />
-//         </svg>
-
-//         <div className={css.aboutItem}>
-//           <svg width={16} height={16} fill="#FFC531" stroke="#FFC531">
-//             <use href="/sprite.svg#star" />
-//           </svg>
-//           <span>Rating: 4.8</span>
-//         </div>
-
-//         <svg width={1} height={16} stroke="rgba(18, 20, 23, 0.2)">
-//           <use href="/sprite.svg#icon-divide" />
-//         </svg>
-
-//         <div className={css.aboutItem}>
-//           <span>
-//             Price / 1 hour: <span>30$</span>
-//           </span>
-//         </div>
-//       </div>
-
-//       <svg width={26} height={26} fill="none" stroke="#121417">
-//         <use href="/sprite.svg#heart" />
-//       </svg>
-//     </li>
-//   );
-// };
-
-// export default TeacherCard;
-
+import { useState } from "react";
 import css from "./TeacherCard.module.css";
+import type { Teacher } from "../../types/teacher";
 
-const levels = [
-  "#A1 Beginner",
-  "#A2 Elementary",
-  "#B1 Intermediate",
-  "#B2 Upper-Intermediate",
-];
+type Props = { teacher: Teacher };
 
-const reviews = [
-  {
-    name: "Frank",
-    rating: "4.0",
-    text: "Jane's lessons were very helpful. I made good progress.",
-    avatar: "/hero/hero-blue.webp",
-  },
-  {
-    name: "Eve",
-    rating: "5.0",
-    text: "Jane is an amazing teacher! She is patient and supportive.",
-    avatar: "/hero/hero-blue.webp",
-  },
-];
+export const TeacherCard = ({ teacher }: Props) => {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-type Props = { isExpanded?: boolean };
+  const {
+    name,
+    surname,
+    languages,
+    levels,
+    rating,
+    reviews,
+    price,
+    lessons_done,
+    avatar_url,
+    lesson_info,
+    conditions,
+    experience,
+  } = teacher;
 
-export const TeacherCard = ({ isExpanded = false }: Props) => {
+  const fullName = `${name} ${surname}`;
+
+  const REVIEWER_AVATARS = [
+    "/reviewers/1.png",
+    "/reviewers/2.png",
+    "/reviewers/3.png",
+    "/reviewers/4.png",
+    "/reviewers/5.png",
+    "/reviewers/6.png",
+  ];
+
   return (
     <li className={css.card}>
       <div className={css.avatar}>
         <span className={css.indicate} />
         <img
           className={css.img}
-          src="/hero/hero-blue.webp"
-          alt="Jane Smith"
+          src={avatar_url}
+          alt={fullName}
           width={96}
           height={96}
         />
@@ -109,7 +50,7 @@ export const TeacherCard = ({ isExpanded = false }: Props) => {
         <div className={css.header}>
           <div className={css.name}>
             <span>Languages</span>
-            <p>Jane Smith</p>
+            <p>{fullName}</p>
           </div>
 
           <div className={css.about}>
@@ -120,17 +61,17 @@ export const TeacherCard = ({ isExpanded = false }: Props) => {
               <span>Lessons online</span>
             </div>
             <div className={css.stat}>
-              <span>Lessons done: 1098</span>
+              <span>Lessons done: {lessons_done}</span>
             </div>
             <div className={css.stat}>
               <svg width={16} height={16} fill="#FFC531" stroke="#FFC531">
                 <use href="/sprite.svg#star" />
               </svg>
-              <span>Rating: 4.8</span>
+              <span>Rating: {rating}</span>
             </div>
             <div className={css.stat}>
               <span>
-                Price / 1 hour: <span className={css.price}>30$</span>
+                Price / 1 hour: <span className={css.price}>{price}$</span>
               </span>
             </div>
           </div>
@@ -149,20 +90,22 @@ export const TeacherCard = ({ isExpanded = false }: Props) => {
         <ul className={css.info}>
           <li>
             <span className={css.label}>Speaks: </span>
-            <span className={css.languages}>German, French</span>
+            <span className={css.languages}>{languages.join(", ")}</span>
           </li>
           <li>
             <span className={css.label}>Lesson Info: </span>
-            Lessons are structured to cover grammar, vocabulary, and practical
-            usage of the language.
+            {lesson_info}
           </li>
           <li>
             <span className={css.label}>Conditions: </span>
-            Welcomes both adult learners and teenagers (13 years and above).
-            Provides personalized study plans
+            {conditions.join(" ")}
           </li>
           {!isExpanded && (
-            <button type="button" className={css.readMore}>
+            <button
+              type="button"
+              className={css.readMore}
+              onClick={() => setIsExpanded(true)}
+            >
               Read more
             </button>
           )}
@@ -170,32 +113,21 @@ export const TeacherCard = ({ isExpanded = false }: Props) => {
 
         {isExpanded && (
           <>
-            <p className={css.description}>
-              Jane is an experienced and dedicated language teacher specializing
-              in German and French. She holds a Bachelor's degree in German
-              Studies and a Master's degree in French Literature. Her passion
-              for languages and teaching has driven her to become a highly
-              proficient and knowledgeable instructor. With over 10 years of
-              teaching experience, Jane has helped numerous students of various
-              backgrounds and proficiency levels achieve their language learning
-              goals. She is skilled at adapting her teaching methods to suit the
-              needs and learning styles of her students, ensuring that they feel
-              supported and motivated throughout their language journey.
-            </p>
+            <p className={css.description}>{experience}</p>
 
             <ul className={css.reviews}>
-              {reviews.map((review) => (
-                <li key={review.name} className={css.review}>
+              {reviews.map((review, index) => (
+                <li key={index} className={css.review}>
                   <div className={css.reviewer}>
                     <img
                       className={css.reviewerImg}
-                      src={review.avatar}
-                      alt={review.name}
+                      src={REVIEWER_AVATARS[index % REVIEWER_AVATARS.length]}
+                      alt={review.reviewer_name}
                       width={44}
                       height={44}
                     />
                     <div className={css.reviewerInfo}>
-                      <span className={css.label}>{review.name}</span>
+                      <span className={css.label}>{review.reviewer_name}</span>
                       <div className={css.reviewRating}>
                         <svg
                           width={16}
@@ -205,11 +137,11 @@ export const TeacherCard = ({ isExpanded = false }: Props) => {
                         >
                           <use href="/sprite.svg#star" />
                         </svg>
-                        <span>{review.rating}</span>
+                        <span>{review.reviewer_rating.toFixed(1)}</span>
                       </div>
                     </div>
                   </div>
-                  <p>{review.text}</p>
+                  <p>{review.comment}</p>
                 </li>
               ))}
             </ul>

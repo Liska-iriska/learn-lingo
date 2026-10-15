@@ -1,7 +1,7 @@
 .teachersPage {
   background-color: #f8f8f8;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
@@ -12,4 +12,24 @@
   width: 100%;
   max-width: 1184px;
   margin: 0 auto;
+}
+
+.loadMoreBtn {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 183px;
+  height: 60px;
+  background: #f4c550;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+
+  /* line-height: 28px; */
+  line-height: 1.55556;
+  color: #121417;
+  align-self: center;
+  margin-top: 64px;
 }
