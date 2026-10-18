@@ -1,0 +1,161 @@
+.title {
+  margin: 0 0 20px;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  color: #121417;
+}
+
+.text {
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 1.38;
+  color: rgba(18, 20, 23, 0.8);
+}
+
+.teacher {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teacherLabel {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8a8a89;
+}
+
+.teacherName {
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.33;
+  color: #121417;
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
+  cursor: pointer;
+}
+
+.radio input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  background: #fff;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
+  transition: border-color 0.2s ease;
+}
+
+.input::placeholder {
+  color: #121417;
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.input[aria-invalid="true"] {
+  border-color: #e44848;
+}
+
+.error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #e44848;
+}
+
+.submit {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.56;
+  color: #121417;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit:hover,
+.submit:focus-visible {
+  background: var(--accent-hover);
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .legend {
+    font-size: 20px;
+  }
+}

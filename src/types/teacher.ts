@@ -6,7 +6,7 @@ export interface Teacher {
   levels: string[];
   rating: number;
   reviews: Review[];
-  price: number;
+  price_per_hour: number;
   lessons_done: number;
   avatar_url: string;
   lesson_info: string;

@@ -1,11 +1,21 @@
 import { useState } from "react";
 import css from "./TeacherCard.module.css";
 import type { Teacher } from "../../types/teacher";
+import BookTrialModal from "../BookTrialModal/BookTrialModal";
 
 type Props = { teacher: Teacher };
 
-export const TeacherCard = ({ teacher }: Props) => {
+const REVIEWER_AVATARS = [
+  "/reviewers/1.png",
+  "/reviewers/2.png",
+  "/reviewers/3.png",
+  "/reviewers/4.png",
+  "/reviewers/5.png",
+  "/reviewers/6.png",
+];
+const TeacherCard = ({ teacher }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   const {
     name,
@@ -14,7 +24,7 @@ export const TeacherCard = ({ teacher }: Props) => {
     levels,
     rating,
     reviews,
-    price,
+    price_per_hour,
     lessons_done,
     avatar_url,
     lesson_info,
@@ -23,15 +33,6 @@ export const TeacherCard = ({ teacher }: Props) => {
   } = teacher;
 
   const fullName = `${name} ${surname}`;
-
-  const REVIEWER_AVATARS = [
-    "/reviewers/1.png",
-    "/reviewers/2.png",
-    "/reviewers/3.png",
-    "/reviewers/4.png",
-    "/reviewers/5.png",
-    "/reviewers/6.png",
-  ];
 
   return (
     <li className={css.card}>
@@ -71,7 +72,8 @@ export const TeacherCard = ({ teacher }: Props) => {
             </div>
             <div className={css.stat}>
               <span>
-                Price / 1 hour: <span className={css.price}>{price}$</span>
+                Price / 1 hour:
+                <span className={css.price}>{price_per_hour}$</span>
               </span>
             </div>
           </div>
@@ -101,13 +103,15 @@ export const TeacherCard = ({ teacher }: Props) => {
             {conditions.join(" ")}
           </li>
           {!isExpanded && (
-            <button
-              type="button"
-              className={css.readMore}
-              onClick={() => setIsExpanded(true)}
-            >
-              Read more
-            </button>
+            <li>
+              <button
+                type="button"
+                className={css.readMore}
+                onClick={() => setIsExpanded(true)}
+              >
+                Read more
+              </button>
+            </li>
           )}
         </ul>
 
@@ -160,9 +164,16 @@ export const TeacherCard = ({ teacher }: Props) => {
         </ul>
 
         {isExpanded && (
-          <button type="button" className={css.bookBtn}>
+          <button type="button" onClick={() => setIsBookingOpen(true)}>
             Book trial lesson
           </button>
+        )}
+
+        {isBookingOpen && (
+          <BookTrialModal
+            teacher={teacher}
+            onClose={() => setIsBookingOpen(false)}
+          />
         )}
       </div>
     </li>
