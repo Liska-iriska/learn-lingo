@@ -1,90 +1,3 @@
-/* .card {
-  font-family: var(--font-family);
-  display: flex;
-  height: 328px;
-  width: 100%;
-  background-color: #fff;
-  padding: 24px;
-  max-width: 1184px;
-  min-height: 328px;
-}
-
-.avatar {
-  position: relative;
-  min-width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: solid 3px #fbe9ba;
-  margin-right: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.indicate {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #38cd3e;
-  border: solid 2px #fff;
-  top: 19px;
-  right: 23px;
-}
-
-.img {
-  border-radius: 50%;
-}
-
-.about {
-  display: flex;
-  gap: 16px;
-  height: 56px;
-  justify-content: flex-end;
-  align-items: flex-start;
-  width: 100%;
-  margin-right: 64px;
-}
-
-.aboutItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.aboutItem span {
-  color: var(--text-color);
-}
-
-.aboutItem span,
-.name span {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.aboutItem span span {
-  color: #38cd3e;
-}
-
-.name {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 122px;
-}
-
-.name span {
-  color: #8a8a89;
-}
-
-.name p {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 1;
-  color: var(--text-color);
-} */
-
 .card {
   font-family: var(--font-family);
   display: flex;
@@ -97,16 +10,16 @@
   border-radius: 24px;
 }
 
-/* Avatar */
 .avatar {
   position: relative;
   width: 120px;
   height: 120px;
-  border: 3px solid #fbe9ba;
+  border: 3px solid var(--color-hover);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .img {
@@ -125,7 +38,6 @@
   background-color: #38cd3e;
 }
 
-/* Right column */
 .content {
   flex: 1;
   display: flex;
@@ -156,14 +68,12 @@
 }
 
 .name p {
-  margin: 0;
   font-weight: 500;
   font-size: 24px;
   line-height: 1;
   color: var(--text-color);
 }
 
-/* Stats */
 .about {
   display: flex;
   align-items: center;
@@ -186,9 +96,23 @@
 
 .heart {
   background: none;
+  display: flex;
+  padding: 0;
 }
 
-/* Info */
+.heartIcon {
+  fill: none;
+  stroke: var(--text-color);
+  transition:
+    fill 0.2s ease,
+    stroke 0.2s ease;
+}
+
+.heartActive .heartIcon {
+  stroke: var(--color);
+  fill: var(--color);
+}
+
 .info {
   display: flex;
   flex-direction: column;
@@ -218,6 +142,12 @@
   padding: 0;
   text-decoration-skip-ink: none;
   color: var(--text-color);
+  transition: opacity 0.2s ease;
+}
+
+.readMore:hover,
+.readMore:focus-visible {
+  opacity: 0.7;
 }
 
 .description {
@@ -227,7 +157,6 @@
   color: var(--text-color);
 }
 
-/* Reviews */
 .reviews {
   display: flex;
   flex-direction: column;
@@ -241,7 +170,6 @@
 }
 
 .review p {
-  margin: 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -258,6 +186,7 @@
   border-radius: 50%;
   width: 44px;
   height: 44px;
+  object-fit: cover;
 }
 
 .reviewerInfo {
@@ -295,19 +224,26 @@
 }
 
 .levelActive {
-  border-color: #f4c550;
-  background-color: #f4c550;
+  border-color: var(--color);
+  background-color: var(--color);
 }
 
-.bookBtn {
+.book {
   align-self: flex-start;
   padding: 16px 48px;
   border-radius: 12px;
-  background-color: #f4c550;
+  background-color: var(--color);
   font-weight: 700;
   font-size: 18px;
   line-height: 1.55;
   color: var(--text-color);
+  font-family: inherit;
+  transition: background-color 0.4s ease;
+}
+
+.book:hover,
+.book:focus-visible {
+  background-color: var(--color-hover);
 }
 
 .stat + .stat {
@@ -324,4 +260,76 @@
   width: 1px;
   height: 16px;
   background-color: rgba(18, 20, 23, 0.2);
+}
+
+.noticeTitle {
+  margin: 0 0 16px;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--text-color);
+}
+
+.noticeText {
+  font-size: 16px;
+  line-height: 1.38;
+  color: rgba(18, 20, 23, 0.8);
+}
+
+@media (max-width: 1023px) {
+  .card {
+    gap: 24px;
+  }
+
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .about {
+    margin-right: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+  }
+
+  .content {
+    gap: 24px;
+  }
+
+  .name {
+    order: 1;
+  }
+
+  .heart {
+    order: 2;
+  }
+
+  .about {
+    order: 3;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .stat + .stat {
+    margin-left: 0;
+  }
+
+  .stat + .stat::before {
+    display: none;
+  }
+
+  .book {
+    width: 100%;
+  }
+
+  .noticeTitle {
+    font-size: 24px;
+  }
 }

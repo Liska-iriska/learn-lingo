@@ -2,6 +2,9 @@ import { useState } from "react";
 import css from "./TeacherCard.module.css";
 import type { Teacher } from "../../types/teacher";
 import BookTrialModal from "../BookTrialModal/BookTrialModal";
+import Modal from "../Modal/Modal";
+import { useAuth } from "../../hooks/useAuth";
+import { useFavorites } from "../../hooks/useFavorites";
 
 type Props = { teacher: Teacher };
 
@@ -14,10 +17,14 @@ const REVIEWER_AVATARS = [
   "/reviewers/6.png",
 ];
 const TeacherCard = ({ teacher }: Props) => {
+  const { user } = useAuth();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
 
   const {
+    id,
     name,
     surname,
     languages,
@@ -33,11 +40,20 @@ const TeacherCard = ({ teacher }: Props) => {
   } = teacher;
 
   const fullName = `${name} ${surname}`;
+  const favorite = isFavorite(id);
+
+  const handleHeartClick = () => {
+    if (!user) {
+      setIsNoticeOpen(true);
+      return;
+    }
+    toggleFavorite(id);
+  };
 
   return (
     <li className={css.card}>
       <div className={css.avatar}>
-        <span className={css.indicate} />
+        <span className={css.indicate} aria-hidden="true" />
         <img
           className={css.img}
           src={avatar_url}
@@ -56,7 +72,13 @@ const TeacherCard = ({ teacher }: Props) => {
 
           <div className={css.about}>
             <div className={css.stat}>
-              <svg width={16} height={16} fill="none" stroke="#121417">
+              <svg
+                width={16}
+                height={16}
+                fill="none"
+                stroke="#121417"
+                aria-hidden="true"
+              >
                 <use href="/sprite.svg#book-open" />
               </svg>
               <span>Lessons online</span>
@@ -72,7 +94,7 @@ const TeacherCard = ({ teacher }: Props) => {
             </div>
             <div className={css.stat}>
               <span>
-                Price / 1 hour:
+                Price / 1 hour:{" "}
                 <span className={css.price}>{price_per_hour}$</span>
               </span>
             </div>
@@ -80,15 +102,21 @@ const TeacherCard = ({ teacher }: Props) => {
 
           <button
             type="button"
-            className={css.heart}
-            aria-label="Add to favorites"
+            className={`${css.heart} ${favorite ? css.heartActive : ""}`}
+            aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+            aria-pressed={favorite}
+            onClick={handleHeartClick}
           >
-            <svg width={26} height={26} fill="none" stroke="#121417">
+            <svg
+              className={css.heartIcon}
+              width={26}
+              height={26}
+              aria-hidden="true"
+            >
               <use href="/sprite.svg#heart" />
             </svg>
           </button>
         </div>
-
         <ul className={css.info}>
           <li>
             <span className={css.label}>Speaks: </span>
@@ -102,6 +130,7 @@ const TeacherCard = ({ teacher }: Props) => {
             <span className={css.label}>Conditions: </span>
             {conditions.join(" ")}
           </li>
+
           {!isExpanded && (
             <li>
               <button
@@ -114,7 +143,6 @@ const TeacherCard = ({ teacher }: Props) => {
             </li>
           )}
         </ul>
-
         {isExpanded && (
           <>
             <p className={css.description}>{experience}</p>
@@ -138,6 +166,7 @@ const TeacherCard = ({ teacher }: Props) => {
                           height={16}
                           fill="#FFC531"
                           stroke="#FFC531"
+                          aria-hidden="true"
                         >
                           <use href="/sprite.svg#star" />
                         </svg>
@@ -151,7 +180,6 @@ const TeacherCard = ({ teacher }: Props) => {
             </ul>
           </>
         )}
-
         <ul className={css.levels}>
           {levels.map((level, index) => (
             <li
@@ -162,20 +190,38 @@ const TeacherCard = ({ teacher }: Props) => {
             </li>
           ))}
         </ul>
-
         {isExpanded && (
-          <button type="button" onClick={() => setIsBookingOpen(true)}>
+          <button
+            type="button"
+            className={css.book}
+            onClick={() => setIsBookingOpen(true)}
+          >
             Book trial lesson
           </button>
         )}
-
-        {isBookingOpen && (
-          <BookTrialModal
-            teacher={teacher}
-            onClose={() => setIsBookingOpen(false)}
-          />
-        )}
       </div>
+
+      {isBookingOpen && (
+        <BookTrialModal
+          teacher={teacher}
+          onClose={() => setIsBookingOpen(false)}
+        />
+      )}
+
+      {isNoticeOpen && (
+        <Modal
+          onClose={() => setIsNoticeOpen(false)}
+          labelledBy={`notice-${id}`}
+        >
+          <h2 className={css.noticeTitle} id={`notice-${id}`}>
+            Authorization required
+          </h2>
+          <p className={css.noticeText}>
+            This feature is available only to authorized users. Please log in or
+            register to add teachers to your favorites.
+          </p>
+        </Modal>
+      )}
     </li>
   );
 };
