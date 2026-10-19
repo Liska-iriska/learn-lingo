@@ -11,6 +11,9 @@ const TeachersPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const lastKeyRef = useRef<string | undefined>(undefined);
+  const [language, setLanguage] = useState(" ");
+  const [level, setLevel] = useState(" ");
+  const [price, setPrice] = useState(" ");
 
   const load = useCallback(async () => {
     try {
@@ -38,15 +41,40 @@ const TeachersPage = () => {
     load();
   };
 
+  const filteredTeachers = teachers.filter((teacher) => {
+    const matchesLanguage =
+      language === " " ? true : teacher.languages.includes(language);
+
+    const matchesLevel = level === " " ? true : teacher.levels.includes(level);
+
+    const matchesPrice =
+      price === " " ? true : teacher.price_per_hour <= Number(price);
+
+    return matchesLanguage && matchesLevel && matchesPrice;
+  });
+
   return (
     <section className={css.teachersPage}>
       <div className={css.container}>
-        <Filters />
-        <TeachersList teachers={teachers} />
+        <Filters
+          language={language}
+          setLanguage={setLanguage}
+          level={level}
+          setLevel={setLevel}
+          price={price}
+          setPrice={setPrice}
+        />
+        <TeachersList teachers={filteredTeachers} />
 
         {error && <p>{error}</p>}
 
-        {hasMore && (
+        {!isLoading && filteredTeachers.length === 0 && !error && (
+          <p className={css.status}>
+            No teachers found for the selected filters.
+          </p>
+        )}
+
+        {hasMore && filteredTeachers.length > 0 && (
           <button
             className={css.loadMoreBtn}
             type="button"
