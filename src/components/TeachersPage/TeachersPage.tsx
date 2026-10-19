@@ -1,44 +1,48 @@
 import Filters from "../Filters/Filters";
 import TeachersList from "../TeachersList/TeachersList";
 import css from "./TeachersPage.module.css";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { fetchTeachers } from "../../services/teachers";
+import { useEffect, useState } from "react";
+import { fetchAllTeachers } from "../../services/teachers";
 import type { Teacher } from "../../types/teacher";
+
+const PER_PAGE = 4;
 
 const TeachersPage = () => {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
-  const [hasMore, setHasMore] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PER_PAGE);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const lastKeyRef = useRef<string | undefined>(undefined);
+
   const [language, setLanguage] = useState(" ");
   const [level, setLevel] = useState(" ");
   const [price, setPrice] = useState(" ");
 
-  const load = useCallback(async () => {
-    try {
-      const data = await fetchTeachers(lastKeyRef.current);
-      lastKeyRef.current = data.teachers.at(-1)?.id;
-      setTeachers((prev) => {
-        const ids = new Set(prev.map((t) => t.id));
-        return [...prev, ...data.teachers.filter((t) => !ids.has(t.id))];
+  useEffect(() => {
+    fetchAllTeachers()
+      .then((data) => {
+        setTeachers(data);
+      })
+      .catch(() => {
+        setError("Failed to load teachers. Please try again.");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-      setHasMore(data.hasMore);
-      setError("");
-    } catch {
-      setError("Failed to load teachers. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
   }, []);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const handleLanguageChange = (val: string) => {
+    setLanguage(val);
+    setVisibleCount(PER_PAGE);
+  };
 
-  const handleLoadMore = () => {
-    setIsLoading(true);
-    load();
+  const handleLevelChange = (val: string) => {
+    setLevel(val);
+    setVisibleCount(PER_PAGE);
+  };
+
+  const handlePriceChange = (val: string) => {
+    setPrice(val);
+    setVisibleCount(PER_PAGE);
   };
 
   const filteredTeachers = teachers.filter((teacher) => {
@@ -53,18 +57,28 @@ const TeachersPage = () => {
     return matchesLanguage && matchesLevel && matchesPrice;
   });
 
+  const visibleTeachers = filteredTeachers.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredTeachers.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + PER_PAGE);
+  };
+
   return (
     <section className={css.teachersPage}>
       <div className={css.container}>
         <Filters
           language={language}
-          setLanguage={setLanguage}
+          setLanguage={handleLanguageChange}
           level={level}
-          setLevel={setLevel}
+          setLevel={handleLevelChange}
           price={price}
-          setPrice={setPrice}
+          setPrice={handlePriceChange}
         />
-        <TeachersList teachers={filteredTeachers} />
+
+        {isLoading && <p className={css.status}>Loading...</p>}
+
+        {!isLoading && <TeachersList teachers={visibleTeachers} />}
 
         {error && <p>{error}</p>}
 

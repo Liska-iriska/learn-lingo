@@ -1,43 +1,30 @@
-import {
-  ref,
-  query,
-  orderByKey,
-  limitToFirst,
-  startAfter,
-  get,
-} from "firebase/database";
+import { ref, get } from "firebase/database";
 import { db } from "../firebase";
 import type { Teacher } from "../types/teacher";
 
 export const PER_PAGE = 4;
 
-export async function fetchTeachers(lastKey?: string) {
-  const base = ref(db);
+export async function fetchAllTeachers(): Promise<Teacher[]> {
+  const snapshot = await get(ref(db));
 
-  const q = lastKey
-    ? query(base, orderByKey(), startAfter(lastKey), limitToFirst(PER_PAGE + 1))
-    : query(base, orderByKey(), limitToFirst(PER_PAGE + 1));
+  if (!snapshot.exists()) return [];
 
-  const snapshot = await get(q);
+  const data = snapshot.val();
 
-  const items: Teacher[] = [];
-  snapshot.forEach((child) => {
-    items.push({ id: child.key as string, ...child.val() });
-  });
+  const teachersData = data.teachers ? data.teachers : data;
 
-  return {
-    teachers: items.slice(0, PER_PAGE),
-    hasMore: items.length > PER_PAGE,
-  };
+  const items: Teacher[] = Object.entries(teachersData).map(([key, value]) => ({
+    id: key,
+    ...(value as Omit<Teacher, "id">),
+  }));
+
+  console.log("Завантажені вчителі:", items);
+  return items;
 }
 
 export async function fetchTeachersByIds(ids: string[]): Promise<Teacher[]> {
-  const snapshots = await Promise.all(ids.map((id) => get(ref(db, id))));
+  if (!ids || ids.length === 0) return [];
 
-  return snapshots
-    .filter((snapshot) => snapshot.exists())
-    .map((snapshot) => ({
-      id: snapshot.key as string,
-      ...(snapshot.val() as Omit<Teacher, "id">),
-    }));
+  const allTeachers = await fetchAllTeachers();
+  return allTeachers.filter((teacher) => ids.includes(teacher.id));
 }
