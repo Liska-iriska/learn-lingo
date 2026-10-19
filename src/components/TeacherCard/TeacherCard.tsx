@@ -6,7 +6,10 @@ import Modal from "../Modal/Modal";
 import { useAuth } from "../../hooks/useAuth";
 import { useFavorites } from "../../hooks/useFavorites";
 
-type Props = { teacher: Teacher };
+type Props = {
+  teacher: Teacher;
+  selectedLevel?: string;
+};
 
 const REVIEWER_AVATARS = [
   "/reviewers/1.png",
@@ -16,7 +19,7 @@ const REVIEWER_AVATARS = [
   "/reviewers/5.png",
   "/reviewers/6.png",
 ];
-const TeacherCard = ({ teacher }: Props) => {
+const TeacherCard = ({ teacher, selectedLevel }: Props) => {
   const { user } = useAuth();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -180,16 +183,23 @@ const TeacherCard = ({ teacher }: Props) => {
             </ul>
           </>
         )}
+
         <ul className={css.levels}>
-          {levels.map((level, index) => (
-            <li
-              key={level}
-              className={`${css.level} ${index === 0 ? css.levelActive : ""}`}
-            >
-              {level}
-            </li>
-          ))}
+          {levels.map((level) => {
+            const isActive =
+              level === selectedLevel ||
+              (selectedLevel === "-" && level === levels[0]);
+            return (
+              <li
+                key={level}
+                className={`${css.level} ${isActive ? css.levelActive : ""}`}
+              >
+                {level}
+              </li>
+            );
+          })}
         </ul>
+
         {isExpanded && (
           <button
             type="button"

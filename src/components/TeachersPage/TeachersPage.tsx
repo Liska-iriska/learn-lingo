@@ -78,7 +78,9 @@ const TeachersPage = () => {
 
         {isLoading && <p className={css.status}>Loading...</p>}
 
-        {!isLoading && <TeachersList teachers={visibleTeachers} />}
+        {!isLoading && (
+          <TeachersList teachers={visibleTeachers} selectedLevel={level} />
+        )}
 
         {error && <p>{error}</p>}
 
