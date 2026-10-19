@@ -184,12 +184,110 @@
   background: var(--color-hover);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .title {
-    font-size: 28px;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .text {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .teacher {
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .form {
+    gap: 30px;
   }
 
   .legend {
-    font-size: 20px;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .radios {
+    gap: 14px;
+  }
+
+  .radio {
+    font-size: 15px;
+  }
+
+  .fields {
+    gap: 16px;
+  }
+
+  .input {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .submit {
+    padding: 14px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 393px) {
+  .title {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .text {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .teacher {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .form {
+    gap: 24px;
+  }
+
+  .legend {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .radios {
+    gap: 12px;
+  }
+
+  .radio {
+    font-size: 14px;
+  }
+
+  .radio input {
+    width: 20px;
+    height: 20px;
+  }
+
+  .radio input::before {
+    width: 8px;
+    height: 8px;
+  }
+
+  .fields {
+    gap: 14px;
+  }
+
+  .input {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .submit {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
   }
 }

@@ -32,8 +32,35 @@
   cursor: pointer;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  .backdrop {
+    padding: 16px 12px;
+  }
+
   .modal {
-    padding: 56px 20px 32px;
+    max-width: 100%;
+    padding: 48px 24px 24px;
+    border-radius: 20px;
+  }
+
+  .close {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 393px) {
+  .backdrop {
+    padding: 12px 8px;
+  }
+
+  .modal {
+    padding: 40px 16px 20px;
+    border-radius: 16px;
+  }
+
+  .close {
+    top: 12px;
+    right: 12px;
   }
 }

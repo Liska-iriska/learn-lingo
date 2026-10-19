@@ -46,13 +46,32 @@
   background-color: var(--text-color-hover);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  .group {
+    gap: 16px;
+  }
+
+  .login,
+  .name,
+  .primary {
+    font-size: 14px;
+  }
+
+  .primary {
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 393px) {
   .group {
     gap: 12px;
   }
 
   .primary {
-    height: 44px;
-    padding: 0 20px;
+    width: fit-content;
+    height: 40px;
+    padding: 0 16px;
   }
 }

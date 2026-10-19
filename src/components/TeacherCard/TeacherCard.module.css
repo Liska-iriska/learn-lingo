@@ -276,25 +276,24 @@
   color: rgba(18, 20, 23, 0.8);
 }
 
-@media (max-width: 1023px) {
-  .card {
-    gap: 24px;
-  }
-
-  .header {
-    flex-wrap: wrap;
-  }
-
-  .about {
-    margin-right: 16px;
-  }
-}
-
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .card {
     flex-direction: column;
     gap: 24px;
     padding: 20px;
+    border-radius: 20px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .indicate {
+    top: 14px;
+    right: 17px;
+    width: 10px;
+    height: 10px;
   }
 
   .content {
@@ -303,18 +302,31 @@
 
   .name {
     order: 1;
+    gap: 6px;
+  }
+
+  .name span {
+    font-size: 15px;
+  }
+
+  .name p {
+    font-size: 20px;
+  }
+
+  .about {
+    order: 3;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    width: 100%;
+    margin-right: 0;
   }
 
   .heart {
     order: 2;
   }
 
-  .about {
-    order: 3;
-    flex-wrap: wrap;
-    gap: 8px 24px;
-    width: 100%;
-    margin-right: 0;
+  .stat {
+    font-size: 15px;
   }
 
   .stat + .stat {
@@ -325,11 +337,117 @@
     display: none;
   }
 
+  .info {
+    font-size: 15px;
+  }
+
+  .readMore {
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .review p {
+    font-size: 15px;
+  }
+
   .book {
     width: 100%;
+    padding: 14px 24px;
+    font-size: 16px;
+    text-align: center;
   }
 
   .noticeTitle {
     font-size: 24px;
+  }
+
+  .noticeText {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 393px) {
+  .card {
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .indicate {
+    top: 10px;
+    right: 12px;
+  }
+
+  .content {
+    gap: 16px;
+  }
+
+  .name span {
+    font-size: 14px;
+  }
+
+  .name p {
+    font-size: 18px;
+  }
+
+  .about {
+    gap: 6px 16px;
+  }
+
+  .stat {
+    font-size: 14px;
+  }
+
+  .info {
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .readMore {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-top: -12px;
+  }
+
+  .reviews {
+    gap: 20px;
+  }
+
+  .review p {
+    font-size: 14px;
+  }
+
+  .reviewerInfo {
+    font-size: 14px;
+  }
+
+  .level {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .book {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .noticeTitle {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .noticeText {
+    font-size: 14px;
   }
 }

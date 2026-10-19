@@ -47,3 +47,58 @@
   width: 86px;
   height: 36px;
 }
+
+@media (max-width: 768px) {
+  .info {
+    margin-bottom: 24px;
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 24px 32px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+
+  .listItem {
+    gap: 12px;
+  }
+
+  .number {
+    font-size: 24px;
+  }
+
+  .label {
+    font-size: 14px;
+    width: 76px;
+    height: auto;
+  }
+}
+
+@media (max-width: 393px) {
+  .info {
+    margin: 16px 0;
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .listItem {
+    gap: 10px;
+  }
+
+  .number {
+    font-size: 22px;
+  }
+
+  .label {
+    font-size: 12px;
+    width: 100px;
+    height: auto;
+  }
+}

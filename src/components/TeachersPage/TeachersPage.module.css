@@ -63,3 +63,48 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 64px 16px;
+  }
+
+  .loadMoreBtn {
+    width: 160px;
+    height: 54px;
+    font-size: 16px;
+    margin-top: 40px;
+  }
+
+  .list {
+    gap: 24px;
+  }
+
+  .status {
+    padding: 32px 0;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 393px) {
+  .container {
+    padding: 40px 12px;
+  }
+
+  .loadMoreBtn {
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+    margin-top: 24px;
+    border-radius: 10px;
+  }
+
+  .list {
+    gap: 16px;
+  }
+
+  .status {
+    padding: 24px 0;
+    font-size: 15px;
+  }
+}
