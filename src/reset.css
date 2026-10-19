@@ -32,6 +32,15 @@ a {
 button {
   cursor: pointer;
   border: none;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+input::placeholder {
+  font-family: inherit;
 }
 
 img {

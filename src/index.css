@@ -46,3 +46,7 @@
     url("/hero/hero-orange@2x.webp") 2x
   );
 }
+
+body {
+  font-family: var(--font-family);
+}
