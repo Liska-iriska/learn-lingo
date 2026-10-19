@@ -30,3 +30,14 @@ export async function fetchTeachers(lastKey?: string) {
     hasMore: items.length > PER_PAGE,
   };
 }
+
+export async function fetchTeachersByIds(ids: string[]): Promise<Teacher[]> {
+  const snapshots = await Promise.all(ids.map((id) => get(ref(db, id))));
+
+  return snapshots
+    .filter((snapshot) => snapshot.exists())
+    .map((snapshot) => ({
+      id: snapshot.key as string,
+      ...(snapshot.val() as Omit<Teacher, "id">),
+    }));
+}

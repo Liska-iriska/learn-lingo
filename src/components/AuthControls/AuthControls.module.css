@@ -1,0 +1,58 @@
+.group {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  transition: opacity 0.2s ease;
+}
+
+.login:hover,
+.login:focus-visible {
+  opacity: 0.7;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.primary {
+  height: 48px;
+  padding: 0 40px;
+  border-radius: 12px;
+  background-color: var(--text-color);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.primary:hover,
+.primary:focus-visible {
+  background-color: var(--text-color-hover);
+}
+
+@media (max-width: 767px) {
+  .group {
+    gap: 12px;
+  }
+
+  .primary {
+    height: 44px;
+    padding: 0 20px;
+  }
+}
