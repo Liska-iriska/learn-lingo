@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import Modal from "../Modal/Modal";
 import css from "./BookTrialModal.module.css";
 
@@ -64,6 +66,12 @@ export default function BookTrialModal({
   });
 
   const onSubmit = () => {
+    iziToast.success({
+      title: "Success",
+      message: `Trial lesson with ${teacher.name} ${teacher.surname} successfully booked!`,
+      position: "topRight",
+      timeout: 3000,
+    });
     reset();
     onClose();
   };
