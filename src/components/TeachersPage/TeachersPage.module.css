@@ -22,14 +22,13 @@
   flex-direction: row;
   width: 183px;
   height: 60px;
-  background: #f4c550;
+  background: var(--color);
   font-family: inherit;
   font-weight: 700;
   font-size: 18px;
 
-  /* line-height: 28px; */
   line-height: 1.55556;
-  color: #121417;
+  color: var(--text-color);
   align-self: center;
   margin-top: 64px;
 }
@@ -66,14 +65,8 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 64px 16px;
-  }
-
-  .loadMoreBtn {
-    width: 160px;
-    height: 54px;
-    font-size: 16px;
-    margin-top: 40px;
+    padding: 38px 16px;
+    max-width: 700px;
   }
 
   .list {
@@ -89,14 +82,7 @@
 @media (max-width: 393px) {
   .container {
     padding: 40px 12px;
-  }
-
-  .loadMoreBtn {
-    width: 140px;
-    height: 48px;
-    font-size: 16px;
-    margin-top: 24px;
-    border-radius: 10px;
+    max-width: 320px;
   }
 
   .list {
@@ -105,6 +91,6 @@
 
   .status {
     padding: 24px 0;
-    font-size: 15px;
+    font-size: 14px;
   }
 }

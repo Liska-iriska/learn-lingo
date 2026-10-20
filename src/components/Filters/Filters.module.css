@@ -4,3 +4,17 @@
   margin-bottom: 32px;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .filters {
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 393px) {
+  .filters {
+    max-width: 320px;
+  }
+}

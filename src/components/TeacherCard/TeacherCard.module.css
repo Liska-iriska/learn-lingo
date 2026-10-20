@@ -278,22 +278,15 @@
 
 @media (max-width: 768px) {
   .card {
-    flex-direction: column;
+    max-width: 720px;
+    flex-direction: row;
     gap: 24px;
     padding: 20px;
-    border-radius: 20px;
   }
 
-  .avatar {
-    width: 96px;
-    height: 96px;
-  }
-
-  .indicate {
-    top: 14px;
-    right: 17px;
-    width: 10px;
-    height: 10px;
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .content {
@@ -306,7 +299,7 @@
   }
 
   .name span {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .name p {
@@ -323,10 +316,16 @@
 
   .heart {
     order: 2;
+    align-self: center;
+    justify-content: end;
+  }
+
+  .book {
+    font-size: 14px;
   }
 
   .stat {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .stat + .stat {
@@ -338,26 +337,19 @@
   }
 
   .info {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .readMore {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .description {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .review p {
-    font-size: 15px;
-  }
-
-  .book {
-    width: 100%;
-    padding: 14px 24px;
     font-size: 16px;
-    text-align: center;
   }
 
   .noticeTitle {
@@ -365,12 +357,13 @@
   }
 
   .noticeText {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 393px) {
   .card {
+    flex-direction: column;
     gap: 16px;
     padding: 16px;
     border-radius: 16px;
@@ -382,8 +375,8 @@
   }
 
   .indicate {
-    top: 10px;
-    right: 12px;
+    top: 5px;
+    right: 8px;
   }
 
   .content {
@@ -400,24 +393,6 @@
 
   .about {
     gap: 6px 16px;
-  }
-
-  .stat {
-    font-size: 14px;
-  }
-
-  .info {
-    font-size: 14px;
-    gap: 6px;
-  }
-
-  .readMore {
-    font-size: 14px;
-  }
-
-  .description {
-    font-size: 14px;
-    margin-top: -12px;
   }
 
   .reviews {
@@ -437,17 +412,8 @@
     font-size: 13px;
   }
 
-  .book {
-    padding: 12px 20px;
-    font-size: 16px;
-  }
-
   .noticeTitle {
     font-size: 20px;
     margin-bottom: 12px;
-  }
-
-  .noticeText {
-    font-size: 14px;
   }
 }
