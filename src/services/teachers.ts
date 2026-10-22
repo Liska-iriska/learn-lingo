@@ -18,7 +18,6 @@ export async function fetchAllTeachers(): Promise<Teacher[]> {
     ...(value as Omit<Teacher, "id">),
   }));
 
-  console.log("Завантажені вчителі:", items);
   return items;
 }
 
