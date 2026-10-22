@@ -13,9 +13,9 @@ const TeachersPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const [language, setLanguage] = useState(" ");
-  const [level, setLevel] = useState(" ");
-  const [price, setPrice] = useState(" ");
+  const [language, setLanguage] = useState("All");
+  const [level, setLevel] = useState("All");
+  const [price, setPrice] = useState("-");
 
   useEffect(() => {
     fetchAllTeachers()
@@ -47,12 +47,13 @@ const TeachersPage = () => {
 
   const filteredTeachers = teachers.filter((teacher) => {
     const matchesLanguage =
-      language === " " ? true : teacher.languages.includes(language);
+      language === "All" ? true : teacher.languages.includes(language);
 
-    const matchesLevel = level === " " ? true : teacher.levels.includes(level);
+    const matchesLevel =
+      level === "All" ? true : teacher.levels.includes(level);
 
     const matchesPrice =
-      price === " " ? true : teacher.price_per_hour <= Number(price);
+      price === "-" ? true : teacher.price_per_hour <= Number(price);
 
     return matchesLanguage && matchesLevel && matchesPrice;
   });

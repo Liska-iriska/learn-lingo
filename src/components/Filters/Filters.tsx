@@ -2,6 +2,7 @@ import Select from "../Select/Select";
 import css from "./Filters.module.css";
 
 const languages = [
+  "All",
   "French",
   "English",
   "German",
@@ -12,6 +13,7 @@ const languages = [
   "Italian",
 ];
 const levels = [
+  "All",
   "A1 Beginner",
   "A2 Elementary",
   "B1 Intermediate",
@@ -19,7 +21,7 @@ const levels = [
   "C1 Advanced",
   "C2 Proficient",
 ];
-const prices = ["30", "40", "50"];
+const prices = ["-", "30", "40", "50"];
 
 interface FiltersProps {
   language: string;
@@ -60,7 +62,7 @@ export default function Filters({
         options={prices}
         value={price}
         onChange={setPrice}
-        formatValue={(v) => (v === " " ? v : `${v} $`)}
+        formatValue={(v) => (v === "-" ? v : `${v} $`)}
       />
     </div>
   );
